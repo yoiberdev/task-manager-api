@@ -1,0 +1,9 @@
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\dto\CreateTaskDTO.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\dto\TaskResponseDTO.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\dto\TaskSummaryDTO.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\dto\UpdateTaskDTO.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\entity\Task.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\exception\TaskNotFoundException.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\repository\TaskRepository.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\service\TaskService.java
+C:\Users\yoibe\Personal\task-manager-api\src\main\java\com\yoiber\services\taskmanager\TaskManagerApiApplication.java

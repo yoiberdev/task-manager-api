@@ -1,0 +1,9 @@
+com\yoiber\services\taskmanager\dto\UpdateTaskDTO.class
+com\yoiber\services\taskmanager\service\TaskService.class
+com\yoiber\services\taskmanager\repository\TaskRepository.class
+com\yoiber\services\taskmanager\dto\TaskSummaryDTO.class
+com\yoiber\services\taskmanager\service\TaskService$TaskStats.class
+com\yoiber\services\taskmanager\entity\Task.class
+com\yoiber\services\taskmanager\dto\TaskResponseDTO.class
+com\yoiber\services\taskmanager\dto\CreateTaskDTO.class
+com\yoiber\services\taskmanager\exception\TaskNotFoundException.class

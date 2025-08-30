@@ -1,0 +1,496 @@
+{
+	"info": {
+		"name": "Task Manager API",
+		"description": "Colección completa de endpoints para la API de gestión de tareas desarrollada con Spring Boot",
+		"version": "1.0.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "taskId",
+			"value": "1",
+			"type": "string"
+		}
+	],
+	"item": [
+		{
+			"name": "📋 Gestión de Tareas",
+			"item": [
+				{
+					"name": "Crear nueva tarea",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Completar documentación del proyecto\",\n  \"description\": \"Escribir documentación completa de la API con ejemplos y casos de uso\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener todas las tareas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tareas con paginación",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks?page=0&size=5",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Número de página (basado en 0)"
+								},
+								{
+									"key": "size",
+									"value": "5",
+									"description": "Cantidad de elementos por página"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener tarea por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks/{{taskId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks", "{{taskId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar tarea",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Documentación actualizada del proyecto\",\n  \"description\": \"Documentación completa con ejemplos mejorados y casos de uso detallados\",\n  \"completed\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks/{{taskId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks", "{{taskId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar tarea",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks/{{taskId}}",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks", "{{taskId}}"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Alternar estado de tarea",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks/{{taskId}}/toggle",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks", "{{taskId}}", "toggle"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🔍 Filtrado y Búsqueda",
+			"item": [
+				{
+					"name": "Filtrar tareas completadas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks?completed=true&page=0&size=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks"],
+							"query": [
+								{
+									"key": "completed",
+									"value": "true",
+									"description": "Filtrar por estado de completitud"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Filtrar tareas pendientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks?completed=false&page=0&size=10",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks"],
+							"query": [
+								{
+									"key": "completed",
+									"value": "false",
+									"description": "Filtrar tareas pendientes"
+								},
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar tareas por palabra clave",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks?search=documentación",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks"],
+							"query": [
+								{
+									"key": "search",
+									"value": "documentación",
+									"description": "Palabra clave para buscar en título y descripción"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar tareas (endpoint dedicado)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks/search?keyword=proyecto",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks", "search"],
+							"query": [
+								{
+									"key": "keyword",
+									"value": "proyecto",
+									"description": "Palabra clave para búsqueda"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "📊 Estadísticas y Resúmenes",
+			"item": [
+				{
+					"name": "Obtener resumen de tareas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks/summary",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks", "summary"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener estadísticas de tareas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/tasks/stats",
+							"host": ["{{baseUrl}}"],
+							"path": ["api", "tasks", "stats"]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "🧪 Casos de Prueba",
+			"item": [
+				{
+					"name": "Test: Crear múltiples tareas",
+					"item": [
+						{
+							"name": "Crear tarea 1 - Urgente",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Revisar código de producción\",\n  \"description\": \"Revisar el código antes del deployment a producción\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/tasks",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "tasks"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear tarea 2 - Normal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Actualizar dependencias\",\n  \"description\": \"Actualizar las dependencias de Maven a las últimas versiones estables\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/tasks",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "tasks"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear tarea 3 - Baja prioridad",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Refactorizar código legacy\",\n  \"description\": \"Mejorar la estructura del código antiguo para mejor mantenibilidad\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/tasks",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "tasks"]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Test: Validaciones",
+					"item": [
+						{
+							"name": "Error - Título vacío",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"\",\n  \"description\": \"Esta tarea debería fallar por título vacío\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/tasks",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "tasks"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Error - Tarea inexistente",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/tasks/999999",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "tasks", "999999"]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Error - Título muy largo",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"title\": \"Este es un título extremadamente largo que excede los 255 caracteres permitidos por la validación del sistema. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.\",\n  \"description\": \"Esta tarea debería fallar por título muy largo\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/tasks",
+									"host": ["{{baseUrl}}"],
+									"path": ["api", "tasks"]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "🌐 Enlaces de Documentación",
+			"item": [
+				{
+					"name": "Swagger UI",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/swagger-ui.html",
+							"host": ["{{baseUrl}}"],
+							"path": ["swagger-ui.html"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "OpenAPI JSON",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api-docs",
+							"host": ["{{baseUrl}}"],
+							"path": ["api-docs"]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check (Actuator)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/actuator/health",
+							"host": ["{{baseUrl}}"],
+							"path": ["actuator", "health"]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Script global que se ejecuta antes de cada request",
+					"console.log('Ejecutando request a:', pm.request.url.toString());"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Tests globales que se ejecutan después de cada response",
+					"pm.test('Status code should not be 500', function () {",
+					"    pm.expect(pm.response.code).to.not.equal(500);",
+					"});",
+					"",
+					"pm.test('Response time is less than 2000ms', function () {",
+					"    pm.expect(pm.response.responseTime).to.be.below(2000);",
+					"});",
+					"",
+					"// Guardar ID de tarea creada para usar en otros requests",
+					"if (pm.response.code === 201 && pm.response.json().id) {",
+					"    pm.collectionVariables.set('taskId', pm.response.json().id);",
+					"    console.log('Nueva tarea creada con ID:', pm.response.json().id);",
+					"}"
+				]
+			}
+		}
+	]
+}
